@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @QuarkusTest
 @Disabled
 @QuarkusTestResource(TestContainerResource.class)
-public class PaymentResourceTest {
+class PaymentResourceTest {
     @Test
     void testFindAll() {
         get("/payments").then()

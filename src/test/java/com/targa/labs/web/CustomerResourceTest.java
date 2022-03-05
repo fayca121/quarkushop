@@ -15,7 +15,7 @@ import static javax.ws.rs.core.Response.Status.OK;
 
 @QuarkusTest
 @QuarkusTestResource(TestContainerResource.class)
-public class CustomerResourceTest {
+class CustomerResourceTest {
     @Test
     void testAll() {
         get("/customers").then()

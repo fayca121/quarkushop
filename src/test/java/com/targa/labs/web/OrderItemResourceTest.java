@@ -10,7 +10,7 @@ import static javax.ws.rs.core.Response.Status.OK;
 
 @QuarkusTest
 @QuarkusTestResource(TestContainerResource.class)
-public class OrderItemResourceTest {
+class OrderItemResourceTest {
     @Test
     void testFindByOrderId() {
         get("/order-items/order/1").then()

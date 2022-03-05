@@ -1,6 +1,5 @@
 package com.targa.labs.service;
 
-import com.targa.labs.domain.OrderItem;
 import com.targa.labs.dto.OrderItemDto;
 import com.targa.labs.dto.mapping.OrderItemMapper;
 import com.targa.labs.repository.OrderItemRepository;

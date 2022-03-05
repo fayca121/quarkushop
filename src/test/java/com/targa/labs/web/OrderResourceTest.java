@@ -27,7 +27,7 @@ import static org.hamcrest.core.Is.is;
 
 @QuarkusTest
 @QuarkusTestResource(TestContainerResource.class)
-public class OrderResourceTest {
+class OrderResourceTest {
     @Test
     void testAll() {
         given().when()

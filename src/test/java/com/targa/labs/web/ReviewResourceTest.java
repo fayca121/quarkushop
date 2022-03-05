@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @QuarkusTest
 @Disabled
 @QuarkusTestResource(TestContainerResource.class)
-public class ReviewResourceTest {
+class ReviewResourceTest {
     @Test
     void testFindAllByProduct() {
         given().when()

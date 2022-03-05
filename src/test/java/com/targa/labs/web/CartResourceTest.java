@@ -27,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @QuarkusTest
 @QuarkusTestResource(TestContainerResource.class)
-public class CartResourceTest {
+class CartResourceTest {
 
     private static final String INSERT_WRONG_CART_IN_DB =
             "insert into carts values (9999, current_timestamp, current_timestamp, 'NEW', 3)";

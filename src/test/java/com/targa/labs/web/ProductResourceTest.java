@@ -11,13 +11,13 @@ import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
 import static javax.ws.rs.core.Response.Status.*;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @QuarkusTest
 @QuarkusTestResource(TestContainerResource.class)
-public class ProductResourceTest {
+class ProductResourceTest {
     
     @Test
     void testFindAll() {
@@ -96,7 +96,7 @@ public class ProductResourceTest {
                 .jsonPath()
                 .getList("id", Long.class);
 
-        assertThat(ids.size()).isEqualTo(2);
+        assertThat(ids,hasSize(2));
     }
 
     @Test
@@ -107,8 +107,7 @@ public class ProductResourceTest {
                 .statusCode(OK.getStatusCode())
                 .extract()
                 .as(Integer.class);
-
-        assertThat(count).isGreaterThanOrEqualTo(2);
+        assertThat(count,greaterThanOrEqualTo(2));
     }
 
     @Test
@@ -222,7 +221,7 @@ public class ProductResourceTest {
                 .jsonPath()
                 .getList("id", Long.class);
 
-        assertThat(ids.size()).isEqualTo(2);
+        assertThat(ids,hasSize(2));
     }
 
     @Test
@@ -235,7 +234,7 @@ public class ProductResourceTest {
                 .extract()
                 .as(Integer.class);
 
-        assertThat(count).isGreaterThanOrEqualTo(2);
+        assertThat(count,greaterThanOrEqualTo(2));
     }
 
     @Test
@@ -311,7 +310,7 @@ public class ProductResourceTest {
                 .jsonPath()
                 .getList("id", Long.class);
 
-        assertThat(ids.size()).isEqualTo(2);
+        assertThat(ids,hasSize(2));
     }
 
     @Test
@@ -324,6 +323,6 @@ public class ProductResourceTest {
                 .extract()
                 .as(Integer.class);
 
-        assertThat(count).isGreaterThanOrEqualTo(2);
+        assertThat(count,greaterThanOrEqualTo(2));
     }
 }

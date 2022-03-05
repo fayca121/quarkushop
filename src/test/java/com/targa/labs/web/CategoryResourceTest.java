@@ -17,7 +17,7 @@ import static org.hamcrest.Matchers.is;
 
 @QuarkusTest
 @QuarkusTestResource(TestContainerResource.class)
-public class CategoryResourceTest {
+class CategoryResourceTest {
     @Test
     void testFindAll() {
         get("/categories").then()
