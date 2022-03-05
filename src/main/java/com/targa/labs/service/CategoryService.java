@@ -13,7 +13,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Transactional
@@ -34,13 +33,12 @@ public class CategoryService {
 
     public List<CategoryDto> findAll() {
         log.debug("Request to get all Categories");
-        return categoryMapper.entityListToDtoList(categoryRepository.findAll())
-                .stream()
-                .peek(dto -> {
-                    Long count = productRepository.countAllByCategoryId(dto.getId());
-                    dto.setProducts(count);
-                })
-                .collect(Collectors.toList());
+        List<CategoryDto> categoryDtoList = categoryMapper.entityListToDtoList(categoryRepository.findAll());
+        categoryDtoList.forEach(dto -> {
+            Long count = productRepository.countAllByCategoryId(dto.getId());
+            dto.setProducts(count);
+        });
+        return categoryDtoList;
     }
 
     public CategoryDto findById(Long id) {
