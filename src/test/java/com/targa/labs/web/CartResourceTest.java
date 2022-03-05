@@ -148,7 +148,7 @@ public class CartResourceTest {
                 //.body(containsString(INTERNAL_SERVER_ERROR.getReasonPhrase()))
                 .body(containsString("There is already an active cart"));
 
-        assertThat(newCartId).isNotNull();
+        assertThat(newCartId).isNotZero();
 
         delete("/carts/" + newCartId).then()
                 .statusCode(NO_CONTENT.getStatusCode());
