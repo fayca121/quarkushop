@@ -2,12 +2,14 @@ package com.targa.labs.web;
 
 import com.targa.labs.dto.CartDto;
 import com.targa.labs.service.CartService;
+import io.quarkus.security.Authenticated;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import java.util.List;
 
+@Authenticated
 @Path("/carts")
 @Tag(name = "Cart",description = "All the cart methods")
 public class CartResource {

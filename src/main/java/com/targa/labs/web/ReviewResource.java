@@ -2,8 +2,10 @@ package com.targa.labs.web;
 
 import com.targa.labs.dto.ReviewDto;
 import com.targa.labs.service.ReviewService;
+import io.quarkus.security.Authenticated;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -28,6 +30,7 @@ public class ReviewResource {
         return this.reviewService.findById(id);
     }
 
+    @Authenticated
     @POST
     @Path("/product/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -35,6 +38,7 @@ public class ReviewResource {
         return this.reviewService.create(reviewDto, id);
     }
 
+    @RolesAllowed("admin")
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") Long id) {

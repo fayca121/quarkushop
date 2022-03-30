@@ -2,6 +2,7 @@ package com.targa.labs.web;
 
 import com.targa.labs.dto.OrderItemDto;
 import com.targa.labs.service.OrderItemService;
+import io.quarkus.security.Authenticated;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+@Authenticated
 @Path("/order-items")
 @Tag(name = "Order-item", description = "All the order-item methods")
 public class OrderItemResource {

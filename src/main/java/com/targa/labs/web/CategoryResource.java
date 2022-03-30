@@ -5,6 +5,7 @@ import com.targa.labs.dto.ProductDto;
 import com.targa.labs.service.CategoryService;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -40,12 +41,14 @@ public class CategoryResource {
     }
 
 
+    @RolesAllowed("admin")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public CategoryDto create(CategoryDto categoryDto) {
         return this.categoryService.create(categoryDto);
     }
 
+    @RolesAllowed("admin")
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") Long id) {

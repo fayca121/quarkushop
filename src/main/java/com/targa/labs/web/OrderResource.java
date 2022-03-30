@@ -2,13 +2,16 @@ package com.targa.labs.web;
 
 import com.targa.labs.dto.OrderDto;
 import com.targa.labs.service.OrderService;
+import io.quarkus.security.Authenticated;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+@Authenticated
 @Path("/orders")
 @Tag(name = "Order", description = "All the order methods")
 public class OrderResource {
@@ -17,6 +20,7 @@ public class OrderResource {
     OrderService orderService;
 
 
+    @RolesAllowed("admin")
     @GET
     public List<OrderDto> findAll() {
         return this.orderService.findAll();

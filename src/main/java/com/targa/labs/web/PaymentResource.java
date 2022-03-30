@@ -3,13 +3,16 @@ package com.targa.labs.web;
 
 import com.targa.labs.dto.PaymentDto;
 import com.targa.labs.service.PaymentService;
+import io.quarkus.security.Authenticated;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+@Authenticated
 @Path("/payments")
 @Tag(name = "Payment", description = "All the payment methods")
 public class PaymentResource {
@@ -17,6 +20,7 @@ public class PaymentResource {
     @Inject
     PaymentService paymentService;
 
+    @RolesAllowed("admin")
     @GET
     public List<PaymentDto> findAll() {
         return this.paymentService.findAll();
@@ -34,6 +38,7 @@ public class PaymentResource {
         return this.paymentService.create(orderItemDto);
     }
 
+    @RolesAllowed("admin")
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") Long id) {

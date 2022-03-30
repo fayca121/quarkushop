@@ -4,6 +4,7 @@ import com.targa.labs.dto.ProductDto;
 import com.targa.labs.service.ProductService;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -33,12 +34,14 @@ public class ProductResource {
         return this.productService.findById(id);
     }
 
+    @RolesAllowed("admin")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public ProductDto create(ProductDto productDto) {
         return this.productService.create(productDto);
     }
 
+    @RolesAllowed("admin")
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") Long id) {

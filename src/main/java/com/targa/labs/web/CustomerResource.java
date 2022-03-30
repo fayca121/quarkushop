@@ -4,11 +4,13 @@ import com.targa.labs.dto.CustomerDto;
 import com.targa.labs.service.CustomerService;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+@RolesAllowed("admin")
 @Path("/customers")
 @Tag(name = "Customer", description = "All the customer methods")
 public class CustomerResource {

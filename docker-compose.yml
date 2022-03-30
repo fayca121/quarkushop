@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+ postgresql:
+    image: "docker.io/bitnami/postgresql:14.1.0"
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=rocks
+    volumes:
+      - "postgresql_data:/bitnami/postgresql"
+    ports:
+      - "5432:5432"
+ keycloak:
+    image: docker.io/bitnami/keycloak:16.1.1
+    ports:
+      - "9080:8080"
+      - "8443:8443"
+      - "999:9990"
+    environment:
+      - KEYCLOAK_CREATE_ADMIN_USER=true
+      - KEYCLOAK_ADMIN_USER=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KEYCLOAK_DATABASE_HOST=postgresql
+      - KEYCLOAK_DATABASE_PORT=5432
+      - KEYCLOAK_DATABASE_USER=postgres
+      - KEYCLOAK_DATABASE_PASSWORD=rocks
+    depends_on:
+      - postgresql
+
+volumes:
+  postgresql_data:
+    driver: local
+
+  
